@@ -4,8 +4,8 @@ using namespace std;
 
 class Graph {
 	public: 
-		vector<list<int>> adj;
-		int v;
+		vector<list<int>> adj; // Adjacency List
+		int v; // Total no of vertices
 
 		Graph(int size) {
 			v=size;
@@ -13,24 +13,24 @@ class Graph {
 		}
 
 		void Edge(int from, int to) {
-			adj[from].push_back(to);
+			adj[from].push_back(to); 
 		}	
 
 		void DFS(int start) {
-			vector<bool> visited;
-			visited.resize(v, false);
-			visited[start]=true;
+			vector<bool> visited; // List of visited nodes
+			visited.resize(v, false); // Set all nodes as unvisited by default
+			visited[start]=true; // Start node as visited
 
 			list<int> stack;
-			stack.push_front(start);
+			stack.push_front(start); // Push starting node
 			while(!stack.empty()) {
-				start=stack.front();
+				start=stack.front(); 
 				cout<<start<<" ";
-				stack.pop_front();
+				stack.pop_front(); // Pop visited node
 				for(auto it: adj[start]) {
-					if(!visited[it]) {
-						stack.push_front(it);
-						visited[it]=true;
+					if(!visited[it]) { // Check if adjacent node is visited
+						stack.push_front(it); // Push next node to stack if unvisited
+						visited[it]=true; // Set Node as visited
 					}
 				}
 
