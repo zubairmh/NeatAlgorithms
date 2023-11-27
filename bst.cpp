@@ -27,6 +27,23 @@ Node *Insert(Node *tree, int val) {
   return tree;
 }
 
+void BFS(Node *tree) {
+    list<Node*> queue; // Initialize Queue
+    queue.push_front(tree);
+    while(!queue.empty()) {
+        Node *t=queue.front();
+        cout<<t->val<<" ";
+        queue.pop_front(); // Dequeue first element
+        if(t->left) {
+            queue.push_back(t->left); // Push Left Subtree
+        } 
+        if(t->right) {
+            queue.push_back(t->right); // Push Right Subtree
+        }
+        
+    }    
+}
+
 void Inorder(Node *tree) {
   if (tree == NULL) {
     return;
@@ -80,4 +97,6 @@ int main() {
   Postorder(tree);
   cout << endl;
   Preorder(tree);
+  cout<<endl;
+  BFS(tree);
 }
