@@ -11,12 +11,6 @@ using namespace std;
 // BuildMaxHeap: create from unsorted array
 // HeapSort: Sort an array
 
-// Priority queue
-
-// – MAX-HEAP-INSERT,
-// – HEAP-EXTRACT-MAX,
-// – HEAP-INCREASE-KEY, and
-// – HEAP-MAXIMUM
 
 
 void MaxHeapify(int heap[], int size, int i) {
@@ -61,11 +55,36 @@ void HeapSort(int heap[], int size) {
     }
 }
 
+
+// Priority queue
+
+// – INSERT(S, x): inserts element x into set S
+// – EXTRACT-MAX(S): removes and returns element of S with
+// the largest key
+// – MAXIMUM(S): returns element of S with the largest key
+// – INCREASE-KEY(S, x, k): increases value of element x’s key
+// to k (Assume k ≥ x’s current key value)
+
+int HeapMaximum(int heap[]) {
+    return heap[0];
+}
+
+int HeapExtractMax(int heap[], int size) {
+  if(size < 1)
+    return 0;
+  int max = heap[0];
+  heap[0] = heap[size-1];
+  size=size-1;
+  MaxHeapify(heap, size, 0);
+  return max;
+}
+
 int main() {
     int heap[]={4,8,3,1,2};
     int n=sizeof(heap)/sizeof(heap[0]);
     BuildMaxHeap(heap, n);
     Disp(heap, n);
-    HeapSort(heap, n);
-    Disp(heap, n);
+    // HeapSort(heap, n);
+    // Disp(heap, n);
+    cout<<HeapExtractMax(heap, n)<<endl;
 }
